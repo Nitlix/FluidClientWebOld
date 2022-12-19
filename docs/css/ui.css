@@ -33,7 +33,8 @@ body {
 }
 
 ::selection {
-    background: var(--main);
+    background: var(--text);
+    color: var(--background);
 }
 
 
