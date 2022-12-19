@@ -1,0 +1,55 @@
+:root {
+    --text: white;
+    --text-desc: rgba(255, 255, 255, 0.671);
+    --text-more: rgba(255, 255, 255, 0.546);
+
+    --background: black;
+    --background-light: rgba(1, 1, 18, 0.571);
+    --background-trans: rgba(1, 1, 18, 0.345);
+    --background-trans2:rgba(1, 1, 18, 0.269);
+
+    --shadow: rgba(255, 255, 255, 0.163);
+    --shadow-medium: rgba(255, 255, 255, 0.285);
+
+    --main: rgb(3, 217, 255);
+    --main-dark: #8400ff;
+    
+
+    
+    --h1: 4.5rem;
+    --h2: 3.5rem;
+    --h3: 2.5rem;
+    --p: 1rem;
+    --p-big: 1.4rem;
+}
+
+/* Mobile sizedown */
+@media screen and (max-width: 1200px) {
+    :root {
+        --h1: 4rem;
+        --h2: 3rem;
+        --h3: 2rem;
+        --p: 1rem;
+        --p-big: 1.4rem;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    :root {
+        --h1: 3.5rem;
+        --h2: 2.5rem;
+        --h3: 2.5rem;
+        --p: .75rem;
+        --p-big: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    :root {
+        --h1: 3rem;
+        --h2: 2rem;
+        --h3: 2rem;
+        --p: .75rem;
+        --p-big: 1.2rem;
+    }
+}
