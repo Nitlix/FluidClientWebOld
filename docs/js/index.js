@@ -1,10 +1,13 @@
 
+
 var messages = [
     ["Minecraft.", "🎮"],
     ["PvP.", "⚔️"],
     ["Boosted FPS.", "🚀"],
     ["Customisation.", "🔥"]
 ]
+
+page_visibile = false;
 
 
 var currenttypingmsg = 0;
@@ -72,6 +75,15 @@ function typeWord(){
 
 }
 
+function notif(title, desc){
+    fId('notif-title').innerText = title;
+    fId('notif-desc').innerText = desc;
+    fId('notif-wrapper').classList.add('active');
+    setTimeout(()=>{
+        fId('notif-wrapper').classList.remove('active');
+    }, 5000);
+}
+
 function erase(){
     var i = -2;
     e = setInterval(function(){
@@ -87,6 +99,31 @@ function erase(){
 }
 
 
+function toggleWindow(){
+    page_visibile = !page_visibile;
+}
+
+
+function zoomers(){
+    document.getElementsByClassName("snowflakes")[0].style.opacity = 0;
+
+    fId('zoomer-wrapper').classList.add('active')
+    fId('zoomer1').classList.add('active')
+    notif("Welcome to our Discord!", "Thanks for joining us!")
+    setTimeout(()=>{
+        fId('zoomer2').classList.add('active')
+        setTimeout(()=>{
+            fId('zoomer3').classList.add('active')
+            setTimeout(()=>{
+                fId('discord').play()
+                setTimeout(()=>{
+                    window.location.href = discord;
+                }, 1500)
+            },150)
+        },10)
+    },250)
+}
+
 
 window.onload = function(){
     window.scrollTo(0,0);
@@ -98,6 +135,13 @@ window.onload = function(){
     });
 
     //Default Init
+
+
+    // Hide window listener
+    document.addEventListener("visibilitychange", toggleWindow()); 
+
+
+
     typeWord();
     updateFps();
     
@@ -107,16 +151,42 @@ window.onload = function(){
 
 
     setInterval(()=>{
-        typeWord();
-        setTimeout(()=>{
-            erase();
-        }, 2000);
+        if (page_visibile){
+            typeWord();
+            setTimeout(()=>{
+                erase();
+            }, 2000);
+        }
+        
     }, 4000);
 
     setInterval(()=>{
         updateFps();
     }, 500);
 
+
+    //CUSTOM SCROLL
+
+
+    
+    // var container = document.body;
+    // var bodyScrollLevel = 0, newY, destY, currentY, windowScrollTop;
+    // smoothScrollMove = function () {
+    //     requestAnimationFrame(smoothScrollMove);
+    //     windowScrollTop = window.pageYOffset;
+    //     destY = windowScrollTop;
+    //     currentY = -bodyScrollLevel;
+    //     if (Math.round(currentY) != Math.round(destY)) {
+    //     newY = Math.round(currentY + ((destY - currentY) * 0.08));
+    //     bodyScrollLevel = -newY;
+    //     container.style.transform = "translate3d(0,-" + newY + "px, 0)";
+    //     }
+    // }
+    // requestAnimationFrame(smoothScrollMove);
+
+
+
+   
 
         
     //DISCORD BUTTON HOVER
@@ -130,7 +200,7 @@ window.onload = function(){
         });
 
         discordButtons[i].addEventListener("click", function(){
-            window.open(discord, "_blank");
+            zoomers()
         });
     }
 

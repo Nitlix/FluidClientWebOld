@@ -28,7 +28,7 @@ Built by nitlix.pro
 }
 
 body {
-    background: rgb(1, 1, 17);
+    background: var(--background);
     overflow-x: hidden;
 }
 
@@ -244,6 +244,7 @@ p.big {
     width: 100%;
     position: fixed;
     top: -8rem;
+    z-index: 1500;
 
     display: grid;
     place-items: center;
@@ -263,7 +264,12 @@ p.big {
 
 .darkmode #notif {
     box-shadow: 0 0 2rem var(--shadow-medium);
-}   
+}  
+
+#notif #notif-title {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+}
 
 #notif img {
     width: 3.5rem;
@@ -316,10 +322,9 @@ button {
 }
 
 button i {
-    font-size: calc(var(--p) * 1.25);
+    font-size: var(--p);
     color: var(--text);
 
-    transform: translateY(.1rem);
 }
 
 
@@ -331,11 +336,23 @@ button.big {
     border-radius: calc(var(--p-big) / 3);
 
     font-size: var(--p-big);
+    font-weight: 600;
     gap: calc(var(--p-big) / 2);
 }
 
+button.big p {
+    font-size: var(--p-big);
+    line-height: var(--p-big);
+    font-weight: 600;
+}
+
+
+button.big.bold {
+    font-weight: 700;
+}
+
 button.big i{
-    font-size: 2.5rem;
+    font-size: 2.25rem;
 }
 
 
@@ -356,9 +373,39 @@ button.alt * {
 
 
 
+
+
+
 button.gradient {
     background: linear-gradient(90deg, var(--main), var(--main-dark));
     color: white;
+}
+
+
+button.transparent {
+    background: transparent;
+    color: var(--text);
+    padding: 0;
+}
+
+button.transparent.gradient *{
+    background: linear-gradient(90deg, var(--main), var(--main-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+}
+
+button.transparent.main * {
+    color: var(--main);
+}
+
+button.transparent.gradient i {
+    color: var(--main-dark)
+}
+
+button.movei:hover i {
+    margin-left: .25rem;
 }
 
 /* Nitlix Sexy Laddition */
@@ -376,12 +423,88 @@ button.gradient {
 }
 
 
+
+/* And a sexy rounded addition */
+
+
+.rounded-addition {
+    background: var(--text);
+    color: var(--background);
+    padding: .75rem 2rem;
+    border-radius: 3rem;
+
+    font-size: var(--p-big) !important;
+    line-height: var(--p-big) !important;
+
+}
+
+.rounded-addition * {
+    color: var(--background) !important;
+    font-family: Poppins !important;
+    font-weight: 600;
+}
+
+
+/* One more strip showing the content */
+
+
+#strip {
+    background: linear-gradient(90deg, var(--main), var(--main-dark) 50%, var(--main) 100%);
+    background-size: 150%;
+    animation: scroll 20000s linear infinite;
+
+    color: white;
+    width: 100%;
+    min-height: 4rem;   
+    
+    display: grid;
+    place-items: center;
+    z-index: 50;
+    position: relative;
+}
+
+#strip * {
+    color: white;
+}
+
+#strip b {
+    padding: .25rem .5rem;
+    background: white;
+    color: rgb(3, 9, 41);
+    border-radius: 2rem;
+}
+
+
+@keyframes scroll {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 1000000% 0;
+    }
+}
+
+/* Text stripe highlight */
+
+
+.stripe {
+    background: linear-gradient(90deg, var(--main), var(--main-dark) 90%);
+    
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    
+}
+
+
 /* Fluid Client Header */
 #header {
     justify-content: space-between;
     padding: 1rem;
     width: 100%;
     margin-top: 1rem;
+
+    
 }
 
 .logo img {
@@ -449,6 +572,9 @@ button.gradient {
 
 @media screen and (max-width: 600px){
     #header #button-menu {
+        display: none;
+    }
+    #header #logo-text {
         display: none;
     }
 }
@@ -668,4 +794,103 @@ button.gradient {
     font-family: Sora;
     margin-top: 2rem;
 }
+
+@media screen and (max-width: 800px) {
+    #fps {
+        padding: 4rem 3rem;
+    }
+}
+
+
+
+
+
+/* Zoomer */
+
+#zoomer-wrapper {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    opacity: 0;
+    pointer-events: none;
+
+    display: grid;
+    place-items: center;
+}
+
+#zoomer-wrapper.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#zoomer1 {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+
+    width: 0;
+    height: 0;
+
+    background: #08a1d8;
+    background: linear-gradient(90deg, #6e0cde, #590877);
+
+
+    transition: 1s ease all;
+}
+
+#zoomer1.active {
+    width: 200vw;
+    height: 200vw;
+}
+
+#zoomer2 {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+
+    width: 0;
+    height: 0;
+
+    background: #bd06dd;
+    background: linear-gradient(90deg, var(--main), var(--main-dark));
+
+
+    transition: 1s ease all;
+}
+
+#zoomer2.active {
+    width: 200vw;
+    height: 200vw;
+}
+
+#zoomer3 {
+    position: absolute;
+    display: grid;
+    place-items: center;
+
+    width: 0;
+    height: 0;
+
+
+    transition: 1s ease all;
+
+    overflow: hidden;
+}
+
+#discord {
+    width: 100%;
+    height: 100%;
+}
+
+#zoomer3.active {
+    width: 20rem;
+    height: 20rem;
+}
+
 

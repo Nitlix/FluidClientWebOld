@@ -5,14 +5,14 @@
 
     --background: black;
     --background-light: rgba(1, 1, 18, 0.571);
-    --background-trans: rgba(1, 1, 18, 0.345);
-    --background-trans2:rgba(1, 1, 18, 0.269);
+    --background-trans: rgba(1, 1, 18, 0.767);
+    --background-trans2:rgba(1, 1, 18, 0.509);
 
     --shadow: rgba(255, 255, 255, 0.163);
     --shadow-medium: rgba(255, 255, 255, 0.285);
 
-    --main: rgb(3, 217, 255);
-    --main-dark: #8400ff;
+    --main: #03f2ff;
+    --main-dark: #7106d6;
     
 
     
